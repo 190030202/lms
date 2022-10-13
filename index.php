@@ -1,175 +1,115 @@
 <?php 
-session_start();
-require_once("class.user.php");
+include('../session.php');
+
+
+require_once("../class.user.php");
+
+  
 $auth_user = new USER();
-
-//if user's logged in redirect to dashboard
-if ($auth_user->is_loggedin() !="") {
-
-   $auth_user->redirect_dashboard();
-}
+// $page_level = 3;
+// $auth_user->check_accesslevel($page_level);
+$pageTitle = "Dashboard";
 ?>
 <!doctype html>
 <html lang="en">
+  <head>
+    <?php 
+      include('x-meta.php');
+    ?>
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="../assets/css/icomoon/styles.css" rel="stylesheet" type="text/css">
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="../assets/css/dashboard.css" rel="stylesheet">
+  </head>
+  <body>
 <?php 
-  include ('x-head.php')
+include('x-nav.php');
 ?>
- <body>
-   <?php 
-      include('x-header.php');
-      ?>
-   <div class="container">
-      <div class="row">
-         <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-            <div class="card card-signin my-5 ">
-               <h5 class="card-title text-center" id="f_text" style="background-color: #408c40; padding: 15px; color: white; border-radius: 5px 5px 0px 0px;" >Sign In</h5>
-               <div class="card-body">
-                  <hr style="margin-top: -30px;">
-                  <div class="text-center msg">
-                     <img src="assets/img/logo/logo.png" alt="CvSU Logo" style="width: 100px;">
-                     <h5>Cavite State Univeristy</h5>
-                     <h3>Information System</h3>
-                     <small id="f_stext">Login here using your username and password</small>
-                  </div>
-                  <div id="f_login">
-                     <form class="form-signin" id="login_form" method="POST">
-                        <div class="form-label-group">
-                           <input type="text" id="inputUsername" class="form-control" placeholder="Username" name="login_user" required autofocus>
-                           <label for="inputUsername">Username</label>
-                        </div>
-                        <div class="form-label-group">
-                           <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="login_password" required>
-                           <label for="inputPassword">Password</label>
-                        </div>
-                        <input type="hidden" name="operation" value="submit_login">
-                        <button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color: #1d8f1d" name="submit_login">Sign in</button>
-                        <div class="text-center">
-                           Don't have an account? <a href="#" id="a_sign" >Sign up</a>
-                        </div>
-                     </form>
-                  </div>
-                  <div id="f_register">
-                     <form class="form-signin" id="register_form" method="POST">
-                        <div class="form-label-group">
-                           <input type="text" id="reg_studentnum" class="form-control" placeholder="Student Number" name="reg_studentnum" onkeypress="return isNumberKey(event)" maxlength="15" required>
-                           <label for="acc_username">Student Number</label>
-                        </div>
-                        <div class="form-row">
-                        <div class="form-label-group col-md-6">
-                           <input type="password" id="reg_password" class="form-control" placeholder="Password" name="reg_password" required>
-                           <label for="acc_password">Password</label>
-                        </div>
-                        <div class="form-label-group col-md-6">
-                           <input type="password" id="reg_cpassword" class="form-control" placeholder="Confirm Password" name="reg_cpassword" required>
-                           <label for="acc_cpassword">Confirm Password</label>
-                        </div>
-                      </div>
-                        <div class="form-label-group">
-                           <input type="email" id="reg_email" class="form-control" placeholder="Email" name="reg_email" required>
-                           <label for="acc_email">Email</label>
-                        </div>
-                        
-                        <input type="hidden" name="operation" value="submit_register">
-                        <button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color: #1d8f1d" name="submit_register">Register</button>
-                        <div class="text-center">
-                           Already have an account? <a href="#" id="a_login">Login</a>
-                        </div>
-                     </form>
-                  </div>
-               </div>
+
+<div class="container-fluid">
+  <div class="row">
+    <?php 
+    include('x-sidenav.php');
+    ?>
+
+    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+     <!--    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+      <h1 class="h2">Dashboard</h1> 
+      </div>-->
+    <div class="row">
+                <div class="col-sm-12 text-center " style="min-height: 100px;">
+                     <img src="../assets/img/logo/logo.png" height="80" style="margin-left: -450px;"> <H3 style="margin-top: -50px;">CAVITE STATE UNIVERSITY</H3>
+                </div>
             </div>
-         </div>
-      </div>
-   </div>
-</body>
+            <div class="row">
+               <div class="col-12 col-sm-12">
+                <img src="../assets/img/background/index.png" height="300"  width="100%">
+                <br><br>
+               </div>
+              <div class="col-6 col-sm-6">
+                <div class="card " style="border:solid 0.9px ;">
+                  <div class="card-header text-center" style=" border-bottom: 5px solid ;">
+                   <strong>UNIVERSITY MISSION</strong>
+                  </div>
+                  <div class="card-body text-center"  style="min-height: 250px">
+                    CAVITE STATE UNIVERSITY shall provide
+                    <br>excellent equitable and relevant educational
+                    <br>opportunities in the arts, sciences
+                    <br>and technology through quality instruction
+                    <br>and responsive research 
+                    <br>and development activitis. 
+                    <br>It shall produce professional,skilled 
+                    <br>and morally upright individuals for 
+                    <br>global competitiveness
+                  </div>
+                </div>
+              </div>
+              <div class="col-6 col-sm-6">
+                <div class="card " style="border:solid 0.9px ;">
+                  <div class="card-header text-center" style=" border-bottom: 5px solid ;">
+                    <strong>UNIVERSITY VISION</strong>
+                  </div>
+                  <div class="card-body text-center"  style="min-height: 250px">
+                    The Premier University in historic Cavite recognized
+                    <br>for excellence in the development of globally 
+                    <br>competitive and morally upright individuals.
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+    </main>
+  </div>
+</div>
 <?php 
 include('x-script.php');
 ?>
-<script type="text/javascript">
-    function isNumberKey(evt)
-      {
-         var charCode = (evt.which) ? evt.which : event.keyCode
-         if (charCode > 31 && (charCode < 48 || charCode > 57))
-            return false;
- 
-         return true;
-      }
- $('#f_register').hide();
 
-   $(document).on('submit', '#login_form', function(event){
-            event.preventDefault();
-
-              $.ajax({
-                url:"data-action.php",
-                method:'POST',
-                data:new FormData(this),
-                contentType:false,
-                processData:false,
-                type:  'html',
-                success:function(data)
-                {
-                  var newdata = JSON.parse(data);
-                  if (newdata.success) {
-                     
-
-                    alertify.alert(newdata.success, 
-                        function(){
-                         window.location.assign("dashboard/");
-                         }).setHeader('Login Success');
-                    alertify.success('Ok');
-                  }
-                  else{
-                    alertify.alert(newdata.error).setHeader('Error Login');
-                  }
-                }
-              });
-           
-          });
-    $(document).on('submit', '#register_form', function(event){
-            event.preventDefault();
-
-              $.ajax({
-                url:"data-action.php",
-                method:'POST',
-                data:new FormData(this),
-                contentType:false,
-                processData:false,
-                type:  'html',
-                success:function(data)
-                {
-                  var newdata = JSON.parse(data);
-                  if (newdata.success) {
-                      // alertify.alert(newdata.success).setHeader('Register Success');
-                     
-
-                      alertify.alert(newdata.success, 
-                        function(){
-                        window.location.assign("dashboard/");
-                         }).setHeader('Register Success');
-                      alertify.success('Ok');
-                  }
-                  else{
-                    alertify.alert(newdata.error).setHeader('Error Register');
-                  }
-                }
-              });
-           
-          });
-     $(document).on('click', '#a_sign', function(){
-    
-       $('#f_text').text('Register');
-       $('#f_stext').text('Fill-up to register');
-
-        $('#f_login').hide();
-        $('#f_register').show();
-    });
-  $(document).on('click', '#a_login', function(){
-     $('#f_text').text('Login');
-       $('#f_stext').text('Login here using your username and password');
-        $('#f_login').show();
-        $('#f_register').hide();
-    });
-
-
-</script>
+  
+      </body>
 </html>
